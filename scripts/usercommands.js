@@ -26,9 +26,9 @@ exports.handleCommand = function (src, command, commandData, tar, channel) {
             if (sys.auth(src) > 2 || isSuperAdmin(src)) {
                 sys.sendMessage(src, "/commands owner: To know of owner commands", channel);
             }
-			if (sys.auth(src) > 2) {
-				sys.sendMessage(src, "/commands system: To know of server commands", channel);
-			}
+	    if (sys.auth(src) > 2) {
+		sys.sendMessage(src, "/commands system: To know of server commands", channel);
+	    }
             var module, pluginhelps = getplugins("help-string");
             for (module in pluginhelps) {
                 if (pluginhelps.hasOwnProperty(module)) {
@@ -983,6 +983,12 @@ exports.handleCommand = function (src, command, commandData, tar, channel) {
         }
         return;
     }
+    if (command === "credits") {
+    	normalbot.sendMessage(src, "*Main Scripter: Armu (Ryan)");
+    	normalbot.sendMessage(src, "Other Scripter: Adam Snowden");
+    	return;
+    }
+
     return "no command";
 };
 

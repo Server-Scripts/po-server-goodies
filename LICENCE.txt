@@ -1,0 +1,36 @@
+******************************************************************************************************************************
+This script is for Pokemon Online -- built (only) for Sky Online server. Have fun on the game server everyone is welcome!!!
+******************************************************************************************************************************
+
+Note: These scripts are not public and cannot to be used by anyone except Adam/Armu. we do not give any permission of use.
+
+
+Acknowledgement Status: Using these scripts without permission is a license breach as we do not souly offer them for public usage
+
+Also Acknowledge that we have power over any user using these scripts and if found using them we automatically stop supporting them 
+
+If you want to use a part of our code then please tell us and we will decide if we should grant you permission or not.
+If you use these scripts or any part of our code without consent, We will take it to high court and github policys are very serious as a breach.
+
+So without further do, you are hereby denied access to use the following scripts...
+    
+If you have permission (this includes a ticket ID), then you may continue to use them, and nothing will be brought against you
+we use this kind of security to ensure that our hand built codes dont get abused by a 3rd party person, we also have track logs of downloads per day & per second so whoever does access these and download these, we will request that github enforcement grants us access to certain IPs of downloading as we dont give permission and that we will prosecute anyone not following are terms and conditions not to used by anyone
+
+Terms and Conditions: Rights & Wrong doings   
+Do not copyright.
+Do use without permission. -- punishment is possibly ensured by github.com enforcement team
+Do give or pass these files to 3rd person parties not you are not to link access to public users/members
+
+Credits (&) Contributors
+    Host of Sky: Steve/Ryan [Armu/Secrets]
+    Creator of Sky: Adam (AkA) > [๖ۣۜDragoñite] / Programmer / Scripter 
+    Creator of Sky: Lisa (AkA) > [Diamond] / Announcements/ scripts.js edits
+    Main Scripter: Ryan [Armu/Secrets] Sky Dev master/ Programmer / QT building ect.
+    
+
+Contributors
+    none yet
+    none yet
+    none yet
+
