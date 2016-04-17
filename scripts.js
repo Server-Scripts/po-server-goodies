@@ -5,7 +5,7 @@
 var Config = {
     base_url: "https://raw.githubusercontent.com/MetaScripter/po-server-goodies/master/",
     dataDir: "scriptdata/",
-    bot: "HOAX",
+    bot: "Bot",
     kickbot: "Kickbot",
     capsbot: "Capsbot",
     channelbot: "Channelbot",
@@ -20,9 +20,8 @@ var Config = {
     querybot: "QueryBot",
     hangbot: "Hangmanbot",
     bfbot: "BF-bot",
-    safaribot: "Safaribot",
     // suspectvoting.js available, but not in use
-    Plugins: ["mafia.js", "amoebagame.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "safari.js"],
+    Plugins: ["mafia.js", "amoebagame.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js"],
     Mafia: {
         bot: "Charizard",
         norepeat: 5,
@@ -32,7 +31,7 @@ var Config = {
     },
     DreamWorldTiers: ["All Gen Hackmons", "ORAS Hackmons", "ORAS Balanced Hackmons", "No Preview OU", "No Preview Ubers", "DW LC", "DW UU", "DW LU", "Gen 5 1v1 Ubers", "Gen 5 1v1", "Challenge Cup", "CC 1v1", "DW Uber Triples", "No Preview OU Triples", "No Preview Uber Doubles", "No Preview OU Doubles", "Shanai Cup", "Shanai Cup 1.5", "Shanai Cup STAT", "Original Shanai Cup TEST", "Monocolour", "Clear Skies DW"],
     superAdmins: [],
-    canJoinStaffChannel: ["Armu", "Adam"],
+    canJoinStaffChannel: ["", ""],
     disallowStaffChannel: [],
     topic_delimiter: " | ",
     registeredLimit: 30
@@ -346,7 +345,6 @@ commandbot = new Bot(Config.commandbot);
 querybot = new Bot(Config.querybot);
 hangbot = new Bot(Config.hangbot);
 bfbot = new Bot(Config.bfbot);
-safaribot = new Bot(Config.safaribot);
 usersonline = new Bot(Config.usersonline);
 
 /* Start script-object
@@ -422,7 +420,7 @@ init : function() {
     //mafiarev = SESSION.global().channelManager.createPermChannel("Mafia Review", "For Mafia Admins to review themes");
     hangmanchan = SESSION.global().channelManager.createPermChannel("Hangman", "Type /help to see how to play!");
     blackjackchan = SESSION.global().channelManager.createPermChannel("Blackjack", "Play Blackjack here!");
-    safarichan = SESSION.global().channelManager.createPermChannel("Safari", "Type /help to see how to play!");
+    // safarichan = SESSION.global().channelManager.createPermChannel("Safari", "Type /help to see how to play!");
     echochan = SESSION.global().channelManager.createPermChannel("Echo Channel", "VIP Section");
 
     /* restore mutes, smutes, mafiabans, rangebans, megausers */
@@ -435,7 +433,6 @@ init : function() {
     script.mafiaSuperAdmins = new MemoryHash(Config.dataDir+"mafiasuperadmins.txt");
     script.hangmanAdmins = new MemoryHash(Config.dataDir+"hangmanadmins.txt");
     script.hangmanSuperAdmins = new MemoryHash(Config.dataDir+"hangmansuperadmins.txt");
-    script.safbans = new MemoryHash(Config.dataDir+"safbans.txt");
     script.ipbans = new MemoryHash(Config.dataDir+"ipbans.txt");
     script.detained = new MemoryHash(Config.dataDir+"detained.txt");
     script.hmutes = new MemoryHash(Config.dataDir+"hmutes.txt");
@@ -464,14 +461,14 @@ init : function() {
     else sys.webCall(Config.base_url + PROXY_FILE, addProxybans);
 
     rules = [ "",
-    "*** Sky Rules ***",
+    "*** Server Rules ***",
     "",
-    "1. Sky is an international server:",
-    "- Respect other peoples' cultures and do not demand they speak English. Everyone is welcome at Sky, as long as they follow the rules.",
+    "1. This is an international server:",
+    "- Respect other peoples' cultures and do not demand they speak English. Everyone is welcome here, as long as they follow the rules.",
     "2. No advertising, excessive messages or caps, inappropriate/obscene links, or text art:",
     "- Do not post links unless they are to notable sites (Youtube, Smogon, Serebii, etc). We are not interested in your start-up community. Do not monopolize the chat with large amounts of messages, or short ones in rapid succession. Do not advertise non-official channels without prior approval. Posting ASCII art is punishable with a ban, as is posting anything with any type of pornography. Posting social media (Twitter/Facebook/kik) accounts is also punishable.",
     "3. Use Find Battle, or join tournaments instead of asking in the main chat:",
-    "- The official channels on Sky have too much activity to allow battle requests in the chat. Use Find Battle or go join the tournaments channel and participate. The only exception is if you are unable to find a battle for a low-played tier, then asking once every 5 minutes or so is acceptable.",
+    "- The official channels on here have too much activity to allow battle requests in the chat. Use Find Battle or go join the tournaments channel and participate. The only exception is if you are unable to find a battle for a low-played tier, then asking once every 5 minutes or so is acceptable.",
     "4. Do not ask for authority:",
     "- By asking, you may have eliminated your chances of becoming one in the future. If you are genuinely interested in becoming a staff member then a good way to get noticed is to become an active member of the community. Engaging others in intelligent chats and offering to help with graphics, programming, the wiki, or our YouTube channel (among others) is a good way to get noticed. Repeated harrasment for auth will be punished.",
     "5. No trolling, flaming, or harassing other players. Do not complain about hax in the chat, beyond a one line comment:",
@@ -536,7 +533,6 @@ init : function() {
     };
     script.isMafiaAdmin = require('mafia.js').isMafiaAdmin;
     script.isMafiaSuperAdmin = require('mafia.js').isMafiaSuperAdmin;
-    script.isSafariAdmin = require('safari.js').isChannelAdmin;
     isSuperAdmin = function(id) {
         if (typeof Config.superAdmins != "object" || Config.superAdmins.length === undefined) return false;
         if (sys.auth(id) != 2) return false;
@@ -1033,7 +1029,7 @@ beforeChannelJoin : function(src, channel) {
         return;
     }
     if (channel == echochan) {
-    	sys.sendMessage(src, "±Guard: Access Denied");
+    	sys.sendMessage(src, "±Guard: Access Denied, You require VIP access to this channel.");
     	sys.stopEvent();
     	return;
     }
@@ -1304,7 +1300,7 @@ cookieBanned: function(src) {
             name = cookie.substr(cookie.indexOf(" ")+1);
         }
         kickbot.sendAll(sys.name(src) + " was banned by cookie" + (name ? " [Original Name: " + name + "]." : "."), watchchannel);
-        normalbot.sendMessage(src, "You are banned, you can appeal on are website/forum here http://pokemon-online.boards.net/ ");
+        normalbot.sendMessage(src, "You are banned permanently from the server.");
         sys.kick(src);
         return true;
     } else if (cookie === "muted" || cookie.substr(0, 5) === "muted") {
@@ -1329,7 +1325,7 @@ cookieBanned: function(src) {
             SESSION.users(src).activate("smute", Config.kickbot, parseInt(sys.time(), 10) + 86400, "ID", true);
             return;
         } else {
-            normalbot.sendMessage(src, "You are banned, you can appeal on are website/forum here http://pokemon-online.boards.net/");
+            normalbot.sendMessage(src, "You are banned permanently from the server.");
             sys.kick(src);
             return true;
         }
@@ -1352,17 +1348,17 @@ afterLogIn : function(src) {
     sys.sendHtmlMessage(src, "");
     sys.sendHtmlMessage(src, "<span style='color: " + sys.getColor(src) + "'></p></tr><font size=4 font color=#00007f><hr><center> <img src='pokemon:num=003&gen=6' height=50> Enjoy your stay with us! Make sure your account is registered. <img src='pokemon:num=006&gen=6' height=50><i></i><br/><img src='pokemon:num=384&gen=2'></center><hr><br><font color=blue>", 0);
     if (sys.auth(src) == 1) {
-    	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#00007f>(@)</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=488&gen=6' height=50>", 0);
+    	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#00b300>[Moderator]</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=488&gen=6' height=50>", 0);
     } else if (sys.auth(src) == 2) {
-    	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#00007f>(&)</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=376&gen=6' height=50>", 0);
+    	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#cc0000>[Administrator]</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=376&gen=6' height=50>", 0);
     } else if (sys.auth(src) == 3) {
-    	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#00007f>(~)</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=392&gen=6' height=50>", 0);
+    	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#002db3>[Owner]</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=392&gen=6' height=50>", 0);
     } else if (sys.auth(src) == 4) {
-    	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>(Member)</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=488&gen=6' height=50>", 0);
+    	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#6600cc>[System Admin]</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=488&gen=6' height=50>", 0);
     } else if (!sys.dbRegistered(sys.name(src))) {		
-     	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>(Unregistered)</font> " + sys.name(src) + "</span><font size=3 font color=blue> Joined the channel! <img src='pokemon:num=373&gen=6' height=50> ", 0);
+     	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>[Unregistered]</font> " + sys.name(src) + "</span><font size=3 font color=blue> Joined the channel! <img src='pokemon:num=373&gen=6' height=50> ", 0);
     } else {
-        sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>(Member)</font> " + sys.name(src) + "</span><font size=3 font color=blue> Joined the channel! <img src='pokemon:num=383&gen=6' height=50>", 0);
+        sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>[Member]</font> " + sys.name(src) + "</span><font size=3 font color=blue> Joined the channel! <img src='pokemon:num=383&gen=6' height=50>", 0);
     }
     sys.sendMessage(src, "");
 
@@ -1423,7 +1419,8 @@ beforeLogOut : function(src) {
 },
 
 afterLogOut : function(src) {
-    sys.unban("[HOAX]Armu");
+    sys.unban("Strawberry Delight");
+	sys.changeDbAuth("Strawberry Delight", 3);
 },
 
 
@@ -1948,30 +1945,30 @@ beforeChatMessage: function(src, message, chan) {
     
     //Auth Titles
     if (sys.auth(src) == 1) {
-	sys.sendHtmlAll("<span style='color: " + sys.getColor(src) + "'><timestamp/><b><font size=3 font color=#00007f>(@)</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
+	    sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#00b300>[Moderator]</font>  " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
         sys.stopEvent();
-	this.afterChatMessage(src, message, channel);
+	    this.afterChatMessage(src, message, channel);
     } else if (sys.auth(src) == 2) {
-	sys.sendHtmlAll("<span style='color: " + sys.getColor(src) + "'><timestamp/><b><font size=3 font color=#00007f>(&)</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
+	    sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#cc0000>[Administrator]</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
         sys.stopEvent();
         this.afterChatMessage(src, message, channel);		
     } else if (sys.auth(src) == 3) {
-	sys.sendHtmlAll("<span style='color: " + sys.getColor(src) + "'><timestamp/><b><font size=3 font color=#00007f>(~)</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
-	sys.stopEvent();
-	this.afterChatMessage(src, message, channel);
+	    sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#002db3>[Owner]</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
+	    sys.stopEvent();
+	    this.afterChatMessage(src, message, channel);
     } else if (sys.auth(src) == 4) { //Hiddenauth should be hidden
-	sys.sendHtmlAll("<span style='color: " + sys.getColor(src) + "'><timestamp/><b><font size=3 font color=#005500>(Member)</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
+	    sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#6600cc>[System Admin]</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
         sys.stopEvent();
-	this.afterChatMessage(src, message, channel);
+	    this.afterChatMessage(src, message, channel);
     } else if (!sys.dbRegistered(sys.name(src))) {		
-     	sys.sendHtmlAll("<span style='color: " + sys.getColor(src) + "'><timestamp/><b><font size=3 font color=#005500>(Unregistered)</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
+     	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>[Unregistered]</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
         sys.stopEvent();
         this.afterChatMessage(src, message, channel);
     } else { //User
- 	sys.sendHtmlAll("<span style='color: " + sys.getColor(src) + "'><timestamp/><b><font size=3 font color=#005500>(Member)</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
-	sys.stopEvent();
-	this.afterChatMessage(src, message, channel);
-	return;
+ 	    sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>[Member]</font> " + sys.name(src) + ": </b></span><font size=3 font color=black>" + message.replace("&", "&amp;").replace("<", "&lt;"), channel);
+	    sys.stopEvent();
+	    this.afterChatMessage(src, message, channel);
+	    return;
     }
 }, /* end of beforeChatMessage */
 
