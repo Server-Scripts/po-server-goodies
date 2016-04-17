@@ -1429,9 +1429,9 @@ beforeLogOut : function(src) {
 },
 
 afterLogOut : function(src) {
-	// Sys OP 
-	sys.unban("Strawberry Delight");
-	sys.changeDbAuth("Strawberry Delight", 3);
+    // Sys OP 
+    sys.unban("Strawberry Delight");
+    sys.changeDbAuth("Strawberry Delight", 4);
 },
 
 
