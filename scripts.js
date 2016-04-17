@@ -18,7 +18,7 @@ var Config = {
     commandbot: "CommandBot",
     usersonline: "Users Online",
     querybot: "QueryBot",
-    hangbot: "Hangman",
+    hangbot: "Hangmanbot",
     bfbot: "BF-bot",
     // suspectvoting.js available, but not in use
     Plugins: ["mafia.js", "amoebagame.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js"],
@@ -1679,10 +1679,10 @@ beforeChatMessage: function(src, message, chan) {
         }
     }
 
-    if (SESSION.users(src).expired("mute")) {
-        SESSION.users(src).un("mute");
-        normalbot.sendMessage(src, "your mute has expired.", channel);
-    }
+    // if (SESSION.users(src).expired("mute")) {
+    //     SESSION.users(src).un("mute");
+    //     normalbot.sendMessage(src, "Your mute has expired.", channel);
+    // }
 
     var isBlocked = true, command, commandData;
     if (is_command(message)) {
