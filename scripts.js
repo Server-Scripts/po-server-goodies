@@ -1367,11 +1367,11 @@ afterLogIn : function(src) {
     	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#6600cc>[System Admin]</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=488&gen=6' height=50>", 0);
     } else if (!sys.dbRegistered(sys.name(src))) {		
      	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>[Unregistered]</font> " + sys.name(src) + "</span><font size=3 font color=blue> Joined the channel! <img src='pokemon:num=373&gen=6' height=50> ", 0);
-    } else {
-        sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>[Member]</font> " + sys.name(src) + "</span><font size=3 font color=blue> Joined the channel! <img src='pokemon:num=383&gen=6' height=50>", 0);
     } else if (sys.name(src) == "TerminalHydreigon") {
     	sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#cc0000>[Administrator]</font> " + sys.name(src) + "</span><font size=3 font color=black> Joined the channel! <img src='pokemon:num=635&gen=6' height=50>", 0);
-    }
+    } else {
+        sys.sendHtmlAll("<timestamp/><span style='color: " + sys.getColor(src) + "'><b><font size=3 font color=#005500>[Member]</font> " + sys.name(src) + "</span><font size=3 font color=blue> Joined the channel! <img src='pokemon:num=383&gen=6' height=50>", 0);
+    } 
     sys.sendMessage(src, "");
 
     callplugins("afterLogIn", src);
