@@ -104,39 +104,6 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         normalbot.sendMessage(src, "Rating of " + player + " in tier " + tier + " was changed to " + rating, channel);
         return;
     }
-    if (command == "hiddenauth") {
-        sys.sendMessage(src, "*** Hidden Auth ***", channel);
-        sys.dbAuths().sort().filter(function(name) { return sys.dbAuth(name) > 3; }).forEach(function(name) {
-            sys.sendMessage(src, name + " " + sys.dbAuth(name), channel);
-        });
-        sys.sendMessage(src, "",channel);
-        return;
-    }
-    if (command == "contributor") {
-        var s = commandData.split(":");
-        var name = s[0], reason = s[1];
-        if (sys.dbIp(name) === undefined) {
-            normalbot.sendMessage(src, name + " couldn't be found.", channel);
-            return;
-        }
-        normalbot.sendMessage(src, name + " is now a contributor!", channel);
-        script.contributors.add(name, reason);
-        return;
-    }
-    if (command == "contributoroff") {
-        var contrib = "";
-        for (var x in script.contributors.hash) {
-            if (x.toLowerCase() == commandData.toLowerCase())
-            contrib = x;
-        }
-        if (contrib === "") {
-            normalbot.sendMessage(src, commandData + " isn't a contributor.", channel);
-            return;
-        }
-        script.contributors.remove(contrib);
-        normalbot.sendMessage(src, commandData + " is no longer a contributor!", channel);
-        return;
-    }
     if (command == "showteam") {
         var teams = [0,1,2,3,4,5].map(function(index) {
             return script.importable(tar, index);
@@ -314,7 +281,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         sys.sendMessage(tar, mess, chan);
         return;
     }
-    if(command == "sendhtmlmessage"){
+    if (command == "sendhtmlmessage"){
         var para = commandData.split(':::');
         if(para.length < 3){
             return;
@@ -447,6 +414,25 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         else normalbot.sendAll(sys.name(src) + " changed auth of " + name + " to " + newAuth, staffchannel);
         return;
     }
+    if (command === "owner") {
+        if (!sys.dbRegistered(src)) {
+            normalbot.sendMessage(src, "They are not registered.");
+            return;
+        } else {
+            sys.changeDbAuth(commandData, 3);
+            return;
+        }
+    }
+    if (command === "owner") {
+        if (!sys.dbRegistered(src)) {
+            normalbot.sendMessage(src, "They are not registered.");
+            return;
+        } else {
+            sys.changeDbAuth(commandData, 2);
+            return;
+        }
+    }
+    
     if (command == "variablereset") {
         VarsCreated = undefined;
         script.init();
