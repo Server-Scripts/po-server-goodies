@@ -428,7 +428,7 @@ init : function() {
     //mafiarev = SESSION.global().channelManager.createPermChannel("Mafia Review", "For Mafia Admins to review themes");
     hangmanchan = SESSION.global().channelManager.createPermChannel("Hangman", "Type /help to see how to play!");
     blackjackchan = SESSION.global().channelManager.createPermChannel("Blackjack", "Play Blackjack here!");
-    // safarichan = SESSION.global().channelManager.createPermChannel("Safari", "Type /help to see how to play!");
+    safarichan = SESSION.global().channelManager.createPermChannel("Safari", "Type /help to see how to play!");
     echochan = SESSION.global().channelManager.createPermChannel("Echo Channel", "VIP Section");
 
 
