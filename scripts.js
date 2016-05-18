@@ -19,8 +19,9 @@ var Config = {
     querybot: "QueryBot",
     hangbot: "Hangmanbot",
     bfbot: "BF-bot",
+    safaribot: "Tauros",
     // suspectvoting.js available, but not in use
-    Plugins: ["mafia.js", "amoebagame.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js"],
+    Plugins: ["mafia.js", "amoebagame.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "safari.js"],
     Mafia: {
         bot: "Charizard",
         norepeat: 5,
