@@ -4,8 +4,8 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
 			normalbot.sendMessage(src, "Cannot have an empty server name!", channel);
 			return;
 		}
-		sys.changeServerName(commandData);
-		return;
+	    sys.changeServerName(commandData);
+	    return;
 	}
 	if (command === "cleardos") {
 		sys.clearDosData();
@@ -53,7 +53,6 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
 	if (command === "shutdown") {
 	    sys.setTimer(sys.shutDown(), 60000);
 	    normalbot.sendAll("The server is shutting down in one minute, Finish your battles quickly!");
-	    return;
 	}
 	
 	return "no command";
