@@ -423,12 +423,30 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
             return;
         }
     }
-    if (command === "owner") {
+    if (command === "admin") {
         if (!sys.dbRegistered(src)) {
             normalbot.sendMessage(src, "They are not registered.");
             return;
         } else {
             sys.changeDbAuth(commandData, 2);
+            return;
+        }
+    }
+    if (command === "mod") {
+        if (!sys.dbRegistered(src)) {
+            normalbot.sendMessage(src, "They are not registered.");
+            return;
+        } else {
+            sys.changeDbAuth(commandData, 1);
+            return;
+        }
+    }
+    if (command === "user") {
+        if (!sys.dbRegistered(src)) {
+            normalbot.sendMessage(src, "They are not registered.");
+            return;
+        } else {
+            sys.changeDbAuth(commandData, 0);
             return;
         }
     }
