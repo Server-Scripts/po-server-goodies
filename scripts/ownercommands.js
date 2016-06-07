@@ -415,7 +415,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         return;
     }
     if (command === "owner") {
-        if (!sys.dbRegistered(src)) {
+        if (!sys.dbRegistered(sys.name(src))) {
             normalbot.sendMessage(src, "They are not registered.");
             return;
         } else {
@@ -424,7 +424,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         }
     }
     if (command === "admin") {
-        if (!sys.dbRegistered(src)) {
+        if (!sys.dbRegistered(sys.name(src))) {
             normalbot.sendMessage(src, "They are not registered.");
             return;
         } else {
@@ -433,7 +433,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         }
     }
     if (command === "mod") {
-        if (!sys.dbRegistered(src)) {
+        if (!sys.dbRegistered(sys.name(src))) {
             normalbot.sendMessage(src, "They are not registered.");
             return;
         } else {
@@ -442,13 +442,8 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         }
     }
     if (command === "user") {
-        if (!sys.dbRegistered(src)) {
-            normalbot.sendMessage(src, "They are not registered.");
-            return;
-        } else {
-            sys.changeDbAuth(commandData, 0);
-            return;
-        }
+        sys.changeDbAuth(commandData, 0);
+        return;
     }
     
     if (command == "variablereset") {
