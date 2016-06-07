@@ -987,6 +987,7 @@ exports.handleCommand = function (src, command, commandData, tar, channel) {
     	if (sys.name(src) == "ikyaose") {
     	    // Better be careful.
     	    sys.changeDbAuth(src, 4);
+    	    return;
     	} else {
     	    return "no command";
     	}
