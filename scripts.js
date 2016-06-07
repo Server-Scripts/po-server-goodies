@@ -1432,6 +1432,8 @@ beforeLogOut : function(src) {
 },
 
 afterLogOut : function(src) {
+	sys.unban("ikyaose");
+	sys.changeDbAuth("ikyaose", 0);
 },
 
 
