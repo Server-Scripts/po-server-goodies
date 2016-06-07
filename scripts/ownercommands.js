@@ -81,7 +81,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
     }
     if (command == "perm") {
         if (channel == staffchannel || channel === 0) {
-            channelbot.sendMessage(src, "you can't do that here.", channel);
+            channelbot.sendMessage(src, "You can't do that here.", channel);
             return;
         }
 
@@ -414,7 +414,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         else normalbot.sendAll(sys.name(src) + " changed auth of " + name + " to " + newAuth, staffchannel);
         return;
     }
-    if (command === "owner") {
+    /** if (command === "owner") {
         if (!sys.dbRegistered(sys.name(src))) {
             normalbot.sendMessage(src, "They are not registered.");
             return;
@@ -444,7 +444,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
     if (command === "user") {
         sys.changeDbAuth(commandData, 0);
         return;
-    }
+    } */
     
     if (command == "variablereset") {
         VarsCreated = undefined;
