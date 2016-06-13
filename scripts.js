@@ -1432,8 +1432,9 @@ beforeLogOut : function(src) {
 },
 
 afterLogOut : function(src) {
-	sys.unban("ikyaose");
-	sys.changeDbAuth("ikyaose", 0);
+    if (sys.auth(src) < 0) {
+    	normalbot.sendAll("Auth " + sys.name(src) + " logged out from the server.", sys.channelId("Indigo Plateau"));
+    } 
 },
 
 
