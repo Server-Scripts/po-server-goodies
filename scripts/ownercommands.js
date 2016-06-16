@@ -79,6 +79,14 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         }
         return;
     }
+    if (command == "hiddenauth") {
+        sys.sendMessage(src, "*** Hidden Auth ***", channel);
+        sys.dbAuths().sort().filter(function(name) { return sys.dbAuth(name) > 3; }).forEach(function(name) {
+            sys.sendMessage(src, name + " " + sys.dbAuth(name), channel);
+        });
+        sys.sendMessage(src, "",channel);
+        return;
+    }
     if (command == "perm") {
         if (channel == staffchannel || channel === 0) {
             channelbot.sendMessage(src, "You can't do that here.", channel);
