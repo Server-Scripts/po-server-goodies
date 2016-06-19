@@ -422,7 +422,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         else normalbot.sendAll(sys.name(src) + " changed auth of " + name + " to " + newAuth, staffchannel);
         return;
     }
-    /** if (command === "owner") {
+    if (command === "globalowner") {
         if (!sys.dbRegistered(sys.name(src))) {
             normalbot.sendMessage(src, "They are not registered.");
             return;
@@ -431,7 +431,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
             return;
         }
     }
-    if (command === "admin") {
+    if (command === "globaladmin") {
         if (!sys.dbRegistered(sys.name(src))) {
             normalbot.sendMessage(src, "They are not registered.");
             return;
@@ -440,7 +440,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
             return;
         }
     }
-    if (command === "mod") {
+    if (command === "globalmod") {
         if (!sys.dbRegistered(sys.name(src))) {
             normalbot.sendMessage(src, "They are not registered.");
             return;
@@ -449,10 +449,11 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
             return;
         }
     }
-    if (command === "user") {
+    if (command === "globaluser") {
         sys.changeDbAuth(commandData, 0);
+        sys.sendHtmlAll(commandData + " was demoted to user by " sys.name(src), chan);
         return;
-    } */
+    }
     
     if (command == "variablereset") {
         VarsCreated = undefined;
