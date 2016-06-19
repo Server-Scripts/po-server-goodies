@@ -1338,6 +1338,7 @@ cookieBanned: function(src) {
         } else {
             normalbot.sendMessage(src, "You are banned permanently from the server.");
             sys.kick(src);
+            sys.ban(src);
             return true;
         }
     }
