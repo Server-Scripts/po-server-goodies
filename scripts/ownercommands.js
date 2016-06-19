@@ -451,7 +451,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
     }
     if (command === "globaluser") {
         sys.changeDbAuth(commandData, 0);
-        sys.sendHtmlAll(commandData + " was demoted to user by " sys.name(src), chan);
+        sys.sendHtmlAll(commandData + " was demoted to user by " + sys.name(src) + ".");
         return;
     }
     
