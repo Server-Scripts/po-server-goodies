@@ -586,7 +586,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
         return;
     }
     if (command == "updatecommands") {
-        var commandFiles = ["usercommands.js", "modcommands.js", "admincommands.js", "ownercommands.js", "channelcommands.js", "commands.js"];
+        var commandFiles = ["usercommands.js", "modcommands.js", "admincommands.js", "ownercommands.js", "channelcommands.js", "commands.js", "systemcommands.js"];
         commandFiles.forEach(function(file) {
             var module = updateModule(file);
             module.source = file;
