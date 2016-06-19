@@ -983,6 +983,14 @@ exports.handleCommand = function (src, command, commandData, tar, channel) {
         }
         return;
     }
+    if (command === "nickname") {
+    	if (!commandData) {
+    	    normalbot.sendMessage(src, "You cannot have an empty nickname.");
+    	    return;
+    	}
+    	sys.changeName(src, commandData);
+    	return;
+    }
 
     return "no command";
 };
