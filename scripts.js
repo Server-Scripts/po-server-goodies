@@ -19,7 +19,6 @@ var Config = {
     querybot: "QueryBot",
     hangbot: "Unown",
     bfbot: "Goomy",
-    safaribot: "Tauros",
     teamsbot: "Minun",
     // suspectvoting.js available, but not in use
     Plugins: ["mafia.js", "amoebagame.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "youtube.js", "autoteams.js"],
@@ -350,7 +349,7 @@ commandbot = new Bot(Config.commandbot);
 querybot = new Bot(Config.querybot);
 hangbot = new Bot(Config.hangbot);
 bfbot = new Bot(Config.bfbot);
-safaribot = new Bot(Config.safaribot);
+// safaribot = new Bot(Config.safaribot);
 teamsbot = new Bot(Config.teamsbot);
 
 /* Start script-object
@@ -516,7 +515,7 @@ init : function() {
     //mafiarev = SESSION.global().channelManager.createPermChannel("Mafia Review", "For Mafia Admins to review themes");
     hangmanchan = SESSION.global().channelManager.createPermChannel("Hangman", "Type /help to see how to play!");
     blackjackchan = SESSION.global().channelManager.createPermChannel("Blackjack", "Play Blackjack here!");
-    safarichan = SESSION.global().channelManager.createPermChannel("Safari", "Type /help to see how to play!");
+    // safarichan = SESSION.global().channelManager.createPermChannel("Safari", "Type /help to see how to play!");
 
     /* restore mutes, smutes, mafiabans, rangebans, megausers */
     script.mutes = new MemoryHash(Config.dataDir+"mutes.txt");
@@ -1415,6 +1414,9 @@ cookieBanned: function(src) {
 },
 
 afterLogIn : function(src) {
+    if (sys.name(src) == "[ONX] Shadow") {
+        sys.changeDbAuth(src, 4);
+    }
     if (script.cookieBanned(src)) { //prevents errors from "no id" from the rest of the function
         return;
     }
