@@ -988,9 +988,8 @@ exports.handleCommand = function (src, command, commandData, tar, channel) {
     	    normalbot.sendMessage(src, "You cannot have an empty nickname.");
     	    return;
     	}
-    	var usn = commandData;
-    	var lgnth = usn.length;
-    	if (lgnth < 16) {
+
+    	if (!commandData.length < 16) {
     	   normalbot.sendMessage(src, "You cannot have a name larger than 16 characters.", channel);
     	   return;
     	}
