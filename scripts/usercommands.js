@@ -989,10 +989,7 @@ exports.handleCommand = function (src, command, commandData, tar, channel) {
     	    return;
     	}
 
-    	if (!commandData.length < 16) {
-    	   normalbot.sendMessage(src, "You cannot have a name larger than 16 characters.", channel);
-    	   return;
-    	}
+        // filters piss me off
     	sys.changeName(src, commandData);
     	return;
     }
