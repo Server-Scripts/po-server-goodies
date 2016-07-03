@@ -58,6 +58,18 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
             	return "no command";
             }
         }
+        
+        if (command === "stopconnections" || command === "sc") {
+            var stopConnections = true;
+            normalbot.sendMessage(src, "Nobody can connect to the server anymore.", channel);
+            return;
+        }
+        
+        if (command === "allowconnections" || command === "ac") {
+            var stopConnections = false;
+            normalbot.sendMessage(src, "People can connect to the server now.", channel);
+            return;
+        }
 	
 	return "no command";
 };
