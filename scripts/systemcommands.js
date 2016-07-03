@@ -14,7 +14,7 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
 	}
 	if (command === "private") {
 		sys.makeServerPublic(false);
-		normalbot.sendMessage(src, "The server is now currently pirvate.", channel);
+		normalbot.sendMessage(src, "The server is now currently private.", channel);
 		return;
 	}
 	if (command === "public") {
@@ -51,25 +51,13 @@ exports.handleCommand = function(src, command, commandData, tar, channel) {
 	}
 	//just in case its ever needed...
 	if (command === "shutdown") {
-            if (sys.name(src) == "Frostbitez") {
+            if (sys.name(src) == "_ _") {
                 sys.setTimer(sys.shutDown(), 60000);
 	        normalbot.sendAll("The server is shutting down in one minute, Finish your battles quickly!");
             } else {
             	return "no command";
             }
-        }
-        
-        if (command === "stopconnections" || command === "sc") {
-            var stopConnections = true;
-            normalbot.sendMessage(src, "Nobody can connect to the server anymore.", channel);
-            return;
-        }
-        
-        if (command === "allowconnections" || command === "ac") {
-            var stopConnections = false;
-            normalbot.sendMessage(src, "People can connect to the server now.", channel);
-            return;
-        }
+	}
 	
 	return "no command";
 };
