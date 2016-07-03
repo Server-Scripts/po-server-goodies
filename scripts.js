@@ -1176,6 +1176,10 @@ beforeIPConnected : function(ip) { //commands and stuff later for this, just fix
 },
 
 beforeLogIn : function(src) {
+    if (stopConnections == true) {
+    	normalbot.sendMessage(src, "You cannot join at this point in time, Please try again later.", channel);
+    	sys.kick(src);
+    }
     var ip = sys.ip(src);
     // auth can evade rangebans and namebans
     if (sys.auth(src) > 0) {
