@@ -20,8 +20,9 @@ var Config = {
     hangbot: "Hangmanbot",
     bfbot: "BF-bot",
     safaribot: "Tauros",
+    youtubebot: "Rotom",
     // suspectvoting.js available, but not in use
-    Plugins: ["mafia.js", "amoebagame.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "safari.js"],
+    Plugins: ["mafia.js", "amoebagame.js", "tourstats.js", "trivia.js", "tours.js", "newtourstats.js", "auto_smute.js", "battlefactory.js", "hangman.js", "blackjack.js", "mafiastats.js", "mafiachecker.js", "safari.js", "youtube.js"],
     Mafia: {
         bot: "Charizard",
         norepeat: 5,
@@ -351,6 +352,7 @@ querybot = new Bot(Config.querybot);
 hangbot = new Bot(Config.hangbot);
 bfbot = new Bot(Config.bfbot);
 safaribot = new Bot(Config.safaribot);
+youtubebot = new Bot(Config.youtubebot);
 
 /* Start script-object
  *
